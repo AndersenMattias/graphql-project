@@ -1,1 +1,1 @@
-# graphql-mern-project
+# graphql-project
