@@ -1,0 +1,49 @@
+// Colours
+$white: #f2f2f2;
+$black: #000000;
+$yellow: #f0db4f;
+$blue: #1aa7ec;
+$orange: #e47911;
+
+// Font Sizes
+$xxsFont: 12px;
+$xsFont: 14px;
+$defaultsize: 1em;
+$largeFont: 18px;
+$XlFont: 1.5em;
+
+// Media queries
+$mobile: 600px;
+$tablet: 768px;
+$laptop: 992px;
+$desktop: 1350px;
+
+@mixin smallmobile {
+  @media (max-width: #{$mobile}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: #{$tablet }) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$laptop }) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (max-width: #{$desktop }) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
