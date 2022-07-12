@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import {
   ApolloProvider,
   ApolloClient,
@@ -7,6 +8,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import App from './App';
 
 const authLink = setContext((_, { headers }) => {
   return {
@@ -48,8 +50,11 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <ApolloProvider client={client}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </ApolloProvider>
 );
