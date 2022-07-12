@@ -1,0 +1,16 @@
+@use '../index' as *;
+
+.nav-container {
+  display: flex;
+  background-color: rgb(245, 248, 248);
+}
+
+.navImg {
+  width: 10rem;
+  margin: 1em;
+  border-radius: 5px;
+}
+
+.nav-header {
+  padding: 50px 0;
+}
