@@ -1,0 +1,45 @@
+@use '../index' as *;
+
+.clientList-header {
+  text-align: center;
+  margin: 1em;
+  font-size: 2em;
+}
+
+.clientList-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 30%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table thead tr {
+  background-color: $darkBlue;
+  color: $white;
+  text-align: left;
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+}
+
+.table tbody tr {
+  border-bottom: thin solid #dddddd;
+}
+
+.table tbody tr:last-of-type {
+  border-bottom: 2px solid $darkBlue;
+}
+
+.table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
