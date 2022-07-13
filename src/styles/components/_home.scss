@@ -1,0 +1,12 @@
+@use '../index' as *;
+
+.clientList-header {
+  text-align: center;
+  margin: 1em;
+  font-size: 2em;
+}
+
+.clientList-wrapper {
+  display: flex;
+  justify-content: center;
+}

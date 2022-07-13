@@ -1,0 +1,68 @@
+@use '../abstracts/variables' as *;
+
+.btn {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  padding: 1em 1.5em;
+  font-size: 1em;
+
+  @include smallmobile {
+  }
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn--primary {
+  background-color: $primary;
+  color: $white;
+  border: none;
+}
+
+.btn--warning {
+  background-color: $warning;
+  color: $dark;
+  border: none;
+}
+
+.btn--danger {
+  background-color: $danger;
+  color: $white;
+  border: none;
+}
+
+.btn--success {
+  background-color: $success;
+  color: $dark;
+  border: none;
+}
+
+.btn--dark {
+  background-color: $dark;
+  color: $white;
+  border: none;
+}
+
+.btn--primary--outline {
+  background-color: transparent;
+  border-color: $primary;
+}
+.btn--warning--outline {
+  background-color: transparent;
+  border-color: $primary;
+}
+
+.btn--danger--outline {
+  background-color: transparent;
+  border-color: $danger;
+}
+
+.btn--success--outline {
+  background-color: transparent;
+  border-color: $success;
+}
