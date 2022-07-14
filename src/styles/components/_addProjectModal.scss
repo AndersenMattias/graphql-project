@@ -1,0 +1,47 @@
+@use '../abstracts/variables' as *;
+
+.modal-wrapper {
+  background: rgba(0, 0, 0, 0.65);
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1;
+
+  .modal-container {
+    background: #fff;
+    border-radius: 5px;
+    max-width: 100%;
+    margin: 15em auto;
+    padding: 1em;
+    width: 560px;
+  }
+
+  .modal-title {
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: thin solid #ccc;
+  }
+
+  h4 {
+    border-bottom: 1px solid #ccc;
+    padding: 1rem;
+    margin: 0;
+  }
+  .modal-content {
+    margin: 1rem;
+  }
+  .modal-btnContainer {
+    border-top: thin solid #ccc;
+    padding: 0.5rem 1rem;
+    button {
+      border-radius: 5px;
+      padding: 0.5rem 1em;
+      font-size: 1rem;
+      line-height: 1;
+      margin: 5px;
+    }
+  }
+}
