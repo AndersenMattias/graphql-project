@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import '../../styles/components/_addProjectModal.scss';
 import Button from '../ui/Button';
@@ -9,6 +9,20 @@ const AddProjectModal = () => {
   const onToggleModal = () => {
     setModalIsOpen(!isModalOpen);
   };
+
+  useEffect(() => {
+    //TODO: Fix event type
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.keyCode === 27) {
+        setModalIsOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
 
   return (
     <>
