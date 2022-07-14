@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { GET_PROJECTS } from '../../queries/project';
-import ProjectCard from '../ProjectCard/ProjectCard';
+import ProjectCard from '../ProjectCard';
 
 import '../../styles/components/_projectList.scss';
 

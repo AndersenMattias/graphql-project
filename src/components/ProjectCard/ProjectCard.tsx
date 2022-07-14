@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import '../../styles/components/_projectCard.scss';
-import Button from '../Button/Button';
+import Button from '../ui/Button';
 
 const ProjectCard = ({ project }: any) => {
   console.log(project);
