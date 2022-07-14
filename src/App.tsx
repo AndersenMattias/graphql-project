@@ -5,7 +5,7 @@ import './styles/abstracts/_base.scss';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import Project from './pages/Project';
-import Header from './components/Header/Header';
+import Header from './components/Header';
 
 function App() {
   return (
