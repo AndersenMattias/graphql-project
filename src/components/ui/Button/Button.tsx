@@ -7,6 +7,7 @@ interface IButtonProps {
   type?: 'submit' | 'reset' | 'button';
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children?: React.ReactNode;
+  id?: string;
 }
 
 const STYLES: Array<string> = [
@@ -28,6 +29,7 @@ const Button = ({
   onClick,
   colour,
   children,
+  id,
 }: IButtonProps) => {
   const checkButtonStyle = STYLES.includes(colour) ? colour : STYLES[0];
 
@@ -37,6 +39,7 @@ const Button = ({
       className={`btn ${checkButtonStyle}`}
       onClick={onClick}
       type={type}
+      id={id}
     >
       {text}
       {children}

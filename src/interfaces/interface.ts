@@ -4,3 +4,7 @@ export interface IProject {
   description: string;
   status: string;
 }
+
+export interface IProps {
+  project: IProject;
+}

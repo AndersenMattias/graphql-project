@@ -93,7 +93,11 @@ const AddProjectModal = (): JSX.Element => {
 
   return (
     <>
-      <button onClick={() => setModalIsOpen(!isModalOpen)}>New Project</button>
+      <Button
+        colour='btn--primary'
+        onClick={() => setModalIsOpen(!isModalOpen)}
+        text='New Project'
+      />
 
       {isModalOpen && (
         <div className='modal-wrapper'>
