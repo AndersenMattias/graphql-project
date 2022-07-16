@@ -23,3 +23,11 @@ export const ADD_PROJECT = gql`
     }
   }
 `;
+
+export const DELETE_PROJECT = gql`
+  mutation DeleteProject($id: Int!) {
+    delete_projects(where: { id: { _eq: $id } }) {
+      affected_rows
+    }
+  }
+`;

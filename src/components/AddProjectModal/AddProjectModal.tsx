@@ -23,11 +23,13 @@ const AddProjectModal = (): JSX.Element => {
   const { loading, error, data } = useQuery(GET_CLIENTS);
 
   const [insert_projects_one] = useMutation(ADD_PROJECT, {
+    // GET current data / list
     update(cache, { data }) {
       const { projects }: any = cache.readQuery({
         query: GET_PROJECTS,
       });
 
+      // insert new data to current list / data
       cache.writeQuery({
         query: GET_PROJECTS,
         data: {
@@ -84,10 +86,6 @@ const AddProjectModal = (): JSX.Element => {
     setDescription('');
     setStatus('new');
     setClientId('');
-
-    setTimeout(() => {
-      setModalIsOpen(false);
-    }, 1000);
   };
 
   if (loading) return null!;
