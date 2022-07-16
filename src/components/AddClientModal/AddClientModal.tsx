@@ -84,11 +84,14 @@ const AddClientModal = (): JSX.Element => {
 
   return (
     <>
-      <Button
-        colour='btn--primary'
-        onClick={() => setModalIsOpen(!isModalOpen)}
-        text='Add Client'
-      />
+      <div className='btn-action'>
+        <Button
+          type='button'
+          colour='btn--primary'
+          onClick={() => setModalIsOpen(!isModalOpen)}
+          text='Add Client'
+        />
+      </div>
 
       {isModalOpen && (
         <div className='modalWrapper-client'>
@@ -96,7 +99,7 @@ const AddClientModal = (): JSX.Element => {
             <h3 className='modalTitle-client'>Add Client</h3>
 
             <div className='modalContent-client'>
-              <form onSubmit={onAddClient}>
+              <form onSubmit={onAddClient} className='form-client'>
                 <label>
                   <input
                     type='text'

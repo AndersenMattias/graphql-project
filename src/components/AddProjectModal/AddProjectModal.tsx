@@ -84,7 +84,7 @@ const AddProjectModal = (): JSX.Element => {
 
     setName('');
     setDescription('');
-    setStatus('new');
+    setStatus('Not_Started');
     setClientId('');
   };
 
@@ -93,31 +93,36 @@ const AddProjectModal = (): JSX.Element => {
 
   return (
     <>
-      <Button
-        colour='btn--primary'
-        onClick={() => setModalIsOpen(!isModalOpen)}
-        text='New Project'
-      />
+      <div className='btn-action'>
+        <div>
+          <Button
+            type='button'
+            colour='btn--primary'
+            onClick={() => setModalIsOpen(!isModalOpen)}
+            text='New Project'
+          />
+        </div>
+      </div>
 
       {isModalOpen && (
-        <div className='modal-wrapper'>
-          <div className='modal-container'>
-            <h3 className='modal-title'>New Project</h3>
+        <div className='modalWrapper-project'>
+          <div className='modalContainer-project'>
+            <h3 className='modalTitle-project'>New Project</h3>
 
-            <div className='modal-content'>
-              <form onSubmit={onAddProject}>
-                <label>Name</label>
+            <div className='modalContent-project'>
+              <form onSubmit={onAddProject} className='form-project'>
                 <input
                   type='text'
                   id='name'
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  placeholder='Name'
                 />
-                <label>Description</label>
                 <textarea
                   id='description'
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
+                  placeholder='Description..'
                 ></textarea>
                 <label>Status</label>
                 <select
@@ -130,24 +135,23 @@ const AddProjectModal = (): JSX.Element => {
                   <option value='Completed'>Completed</option>
                 </select>
 
-                <div>
-                  <label>Client</label>
-                  <select
-                    id='clientId'
-                    value={clientId}
-                    onChange={(e) => setClientId(e.target.value)}
-                  >
-                    <option value=''>Select Client</option>
-                    {data.clients.map(({ id, name }: any) => (
-                      <option key={id} value={id}>
-                        {name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                <label>Client</label>
+                <select
+                  id='clientId'
+                  value={clientId}
+                  onChange={(e) => setClientId(e.target.value)}
+                >
+                  <option value=''>Select Client</option>
+                  {data.clients.map(({ id, name }: any) => (
+                    <option key={id} value={id}>
+                      {name}
+                    </option>
+                  ))}
+                </select>
 
-                <div className='modal-btnContainer'>
+                <div className='modal-btnContainer-project'>
                   <Button
+                    id='btn-close'
                     type='button'
                     colour='btn--primary'
                     text='Close'

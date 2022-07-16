@@ -1,6 +1,6 @@
 @use '../abstracts/variables' as *;
 
-.modal-wrapper {
+.modalWrapper-project {
   background: rgba(0, 0, 0, 0.65);
   bottom: 0;
   left: 0;
@@ -10,38 +10,80 @@
   top: 0;
   z-index: 1;
 
-  .modal-container {
+  .modalContainer-project {
     background: #fff;
     border-radius: 5px;
     max-width: 100%;
     margin: 15em auto;
     padding: 1em;
-    width: 560px;
+    width: 35em;
   }
 
-  .modal-title {
+  .modalTitle-project {
     font-size: 18px;
     font-weight: 600;
-    border-bottom: thin solid #ccc;
+    max-width: 8em;
+    margin: 0 auto;
   }
 
-  h4 {
-    border-bottom: 1px solid #ccc;
-    padding: 1rem;
-    margin: 0;
+  .modalContent-project {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 1.2em 0 1.5em 0;
   }
-  .modal-content {
-    margin: 1rem;
+
+  h3 {
+    border-bottom: thin solid #ccc;
+    padding: 5px;
+    text-align: center;
   }
-  .modal-btnContainer {
-    border-top: thin solid #ccc;
-    padding: 0.5rem 1rem;
+
+  .modal-btnContainer-project {
+    padding-top: 1em;
     button {
       border-radius: 5px;
       padding: 0.5rem 1em;
       font-size: 1rem;
-      line-height: 1;
       margin: 5px;
     }
   }
+  #btn-close {
+    background-color: #ffffff;
+    border: thin solid #555555;
+    color: #555555;
+  }
+}
+
+.form-project {
+  min-width: 30em;
+  border: thin solid #ccc;
+  padding: 3vw;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.form-project input {
+  width: 50%;
+  border: none;
+  outline: none;
+  border-bottom: thin solid #ccc;
+  margin-bottom: 2em;
+}
+
+.form-project label {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  width: 50%;
+}
+
+.form-project select {
+  width: 50%;
+}
+
+.form-project textarea {
+  padding-top: 0.5em;
+  height: 10em;
 }
