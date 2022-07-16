@@ -1,0 +1,94 @@
+@use '../abstracts/variables' as *;
+
+.modalWrapper-client {
+  background: rgba(0, 0, 0, 0.65);
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1;
+
+  .modalContainer-client {
+    background: #fff;
+    border-radius: 5px;
+    max-width: 100%;
+    margin: 15em auto;
+    padding: 1em;
+    width: 35em;
+  }
+
+  .modalTitle-client {
+    font-size: 18px;
+    font-weight: 600;
+    max-width: 8em;
+    margin: 0 auto;
+  }
+
+  .modalContent-client {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 1.2em 0 1.5em 0;
+  }
+
+  h3 {
+    border-bottom: thin solid #ccc;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .modal-btnContainer {
+    button {
+      border-radius: 5px;
+      padding: 0.5rem 1em;
+      font-size: 1rem;
+      margin: 5px;
+    }
+  }
+  #btn-close {
+    background-color: #ffffff;
+    border: thin solid #555555;
+    color: #555555;
+  }
+}
+
+form {
+  min-width: 30em;
+  border: thin solid #ccc;
+  padding: 3vw;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+label {
+  margin-bottom: 15px;
+  position: relative;
+  border-bottom: thin solid #ccc;
+}
+input {
+  width: 100%;
+  padding: 10px 0px;
+  margin-top: 20px;
+  border: none;
+  outline: none;
+}
+input::placeholder {
+  opacity: 0;
+}
+span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(30px);
+  font-size: 0.825em;
+  transition-duration: 300ms;
+}
+
+label:focus-within > span,
+input:not(:placeholder-shown) + span {
+  color: $orange;
+  transform: translateY(0px);
+}
