@@ -1,0 +1,54 @@
+@use '../abstracts/variables' as *;
+
+.clientInfo-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  padding-top: 2.5rem;
+  border: thin solid #ccc;
+
+  .clientInfo-leftColumn {
+    display: grid;
+    justify-content: center;
+  }
+
+  .clientInfo-rightColumn h3 {
+    padding-bottom: 1em;
+  }
+
+  .clientInfo-rightColumn form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+
+    input {
+      width: 20em;
+    }
+  }
+
+  .editForm-actionBtns {
+    display: flex;
+    gap: 2em;
+    padding-top: 1em;
+    padding-bottom: 2em;
+  }
+
+  ul li {
+    margin: 1em;
+    font-size: $largeFont;
+    list-style-type: none;
+  }
+
+  #edit-clientIcon {
+    font-size: 1.2em;
+  }
+
+  #delete-clientIcon {
+    color: $danger;
+    font-size: 1.2em;
+  }
+
+  .icon {
+    margin-right: 1em;
+  }
+}

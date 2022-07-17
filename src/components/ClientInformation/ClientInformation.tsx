@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { FaIdBadge, FaEnvelope, FaPhone, FaTrash } from 'react-icons/fa';
 import { BsPencil } from 'react-icons/bs';
 
 import { useMutation } from '@apollo/client';
-import { UPDATE_CLIENT } from '../../mutations/client';
-import { GET_CLIENT } from '../../queries/client';
+import { DELETE_CLIENT, UPDATE_CLIENT } from '../../mutations/client';
+import { GET_CLIENT, GET_CLIENTS } from '../../queries/client';
 
-import { ClientProps } from '../../interfaces/interface';
+import { ClientProps, IProjectsProps } from '../../interfaces/interface';
+import { GET_PROJECTS } from '../../queries/project';
 
-const ClientInformation = ({ client }: ClientProps) => {
-  console.log(client);
+import '../../styles/components/_clientInformation.scss';
+import Button from '../ui/Button';
+
+const ClientInformation = ({ client, projects }: ClientProps) => {
+  const navigate = useNavigate();
+
+  const clientId = projects.map((x: IProjectsProps) => x.clientId)!;
+
   const [name, setName] = useState(client.name);
   const [email, setEmail] = useState(client.email);
   const [phone, setPhone] = useState(client.phone);
@@ -18,6 +26,13 @@ const ClientInformation = ({ client }: ClientProps) => {
 
   const [update_clients] = useMutation(UPDATE_CLIENT, {
     refetchQueries: [{ query: GET_CLIENT, variables: { id: client.id } }],
+  });
+
+  // Delete client then refetch Data
+  const [delete_clients] = useMutation(DELETE_CLIENT, {
+    variables: { clientId: clientId[0], id: client.id },
+    onCompleted: () => navigate('/'),
+    refetchQueries: [{ query: GET_CLIENTS }, { query: GET_PROJECTS }],
   });
 
   const onEditClient = (e: React.FormEvent) => {
@@ -34,74 +49,94 @@ const ClientInformation = ({ client }: ClientProps) => {
 
   return (
     <>
-      <h5>Client Information</h5>
-      {!toggleEdit && (
-        <ul key={client.id}>
-          <li>
-            <FaIdBadge />
-            {client.name}
-          </li>
-          <li>
-            <FaEnvelope />
-            {client.email}
-          </li>
-          <li>
-            <FaPhone />
-            {client.phone}
-          </li>
-        </ul>
-      )}
+      <div style={{ paddingBottom: '2em' }}>
+        <Link to='/'>
+          <Button colour='btn--primary' text='Go back' />
+        </Link>
+      </div>
 
-      {!toggleEdit && (
-        <button onClick={() => setToggleEdit(!toggleEdit)}>
-          <BsPencil />
-        </button>
-      )}
-
-      {!toggleEdit && (
-        <button onClick={() => setToggleEdit(!toggleEdit)}>
-          <FaTrash />
-        </button>
-      )}
-
-      {toggleEdit && (
-        <div key={client.id}>
-          <form onSubmit={onEditClient}>
-            <label>Name</label>
-            <input
-              type='text'
-              id='name'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <label>Email</label>
-            <input
-              type='email'
-              id='email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label>Phone</label>
-            <input
-              type='text'
-              id='phone'
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-            <div>
-              <button
-                className='btn btn-cancelUserModal'
+      <div className='clientInfo-wrapper'>
+        <div className='clientInfo-leftColumn'>
+          <h3>Client Information</h3>
+          <ul key={client.id}>
+            <li>
+              <FaIdBadge style={{ color: 'orange' }} className='icon' />
+              {client.name}
+            </li>
+            <li>
+              <FaEnvelope style={{ color: 'lightblue' }} className='icon' />
+              {client.email}
+            </li>
+            <li>
+              <FaPhone style={{ color: 'green' }} className='icon' />
+              {client.phone}
+            </li>
+            <li></li>
+          </ul>
+          <div>
+            {!toggleEdit && (
+              <Button
+                id='edit-clientIcon'
+                colour='btn--icon'
                 onClick={() => setToggleEdit(!toggleEdit)}
               >
-                Cancel
-              </button>
-              <button type='submit' className='btn btn-saveUser'>
-                Save
-              </button>
-            </div>
-          </form>
+                <BsPencil />
+              </Button>
+            )}
+
+            {!toggleEdit && (
+              <Button
+                id='delete-clientIcon'
+                colour='btn--icon'
+                onClick={() => delete_clients()}
+              >
+                <FaTrash />
+              </Button>
+            )}
+          </div>
         </div>
-      )}
+
+        <div className='clientInfo-rightColumn'>
+          {toggleEdit && (
+            <div key={client.id}>
+              <h3>Update Client</h3>
+              <form onSubmit={onEditClient}>
+                <label>Name</label>
+                <input
+                  type='text'
+                  id='name'
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <label>Email</label>
+                <input
+                  type='email'
+                  id='email'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <label>Phone</label>
+                <input
+                  type='text'
+                  id='phone'
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+                <div className='editForm-actionBtns'>
+                  <Button
+                    colour='btn--cancel'
+                    id='btn btn-cancelUserModal'
+                    onClick={() => setToggleEdit(!toggleEdit)}
+                    text='Cancel'
+                  />
+
+                  <Button colour='btn--primary' type='submit' text='Save' />
+                </div>
+              </form>
+            </div>
+          )}
+        </div>
+      </div>
     </>
   );
 };

@@ -7,7 +7,7 @@
   cursor: pointer;
   transition: transform 0.3s ease;
 
-  padding: 1em 1.5em;
+  padding: 0.6em 1.2em;
   font-size: 1em;
 
   @include smallmobile {
@@ -16,6 +16,18 @@
 
 .btn:hover {
   transform: translateY(-3px);
+}
+
+.btn--icon {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.btn--cancel {
+  background-color: #ffffff;
+  border: thin solid #555555;
+  color: #555555;
 }
 
 .btn--primary {
