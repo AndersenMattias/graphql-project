@@ -6,6 +6,7 @@ import Button from '../ui/Button';
 import { GET_CLIENTS } from '../../queries/client';
 import { ADD_PROJECT } from '../../mutations/project';
 import { GET_PROJECTS } from '../../queries/project';
+import { IClient } from '../../interfaces/interface';
 
 const AddProjectModal = (): JSX.Element => {
   const [isModalOpen, setModalIsOpen] = useState<boolean>(false);
@@ -73,12 +74,13 @@ const AddProjectModal = (): JSX.Element => {
       return;
     }
 
+    console.log(name, description, status, clientId);
     insert_projects_one({
       variables: {
-        name: name,
-        description: description,
-        clientId: clientId,
-        status: status,
+        name,
+        description,
+        clientId,
+        status,
       },
     });
 
@@ -142,7 +144,7 @@ const AddProjectModal = (): JSX.Element => {
                   onChange={(e) => setClientId(e.target.value)}
                 >
                   <option value=''>Select Client</option>
-                  {data.clients.map(({ id, name }: any) => (
+                  {data.clients.map(({ id, name }: IClient) => (
                     <option key={id} value={id}>
                       {name}
                     </option>

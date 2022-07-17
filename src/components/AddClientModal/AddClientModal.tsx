@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 
 import '../../styles/components/_addClientModal.scss';
 import Button from '../ui/Button';
@@ -15,8 +15,8 @@ const AddClientModal = (): JSX.Element => {
   const [phone, setPhone] = useState<string>('');
 
   // Error handling
-  const [displayErr, setDisplayErr] = useState<boolean>(false);
-  const [errMessage, setErrMessage] = useState<string>('');
+  const [displayMessage, setDisplayMessage] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
 
   const [insert_clients_one] = useMutation(ADD_CLIENT, {
     // GET current data / list
@@ -37,7 +37,7 @@ const AddClientModal = (): JSX.Element => {
 
   useEffect(() => {
     if (name.length > 0 || email.length > 0 || phone.length > 0) {
-      setDisplayErr(false);
+      setDisplayMessage(false);
       return;
     }
   }, [name, email, phone]);
@@ -64,22 +64,38 @@ const AddClientModal = (): JSX.Element => {
     e.preventDefault();
 
     if (name === '' || email === '' || phone === '') {
-      setDisplayErr(true);
-      setErrMessage('Please fill in all fields.');
+      setDisplayMessage(true);
+      setMessage('Please fill in all fields.');
       return;
     }
 
-    insert_clients_one({
-      variables: {
-        name,
-        email,
-        phone,
-      },
-    });
+    try {
+      insert_clients_one({
+        variables: {
+          name,
+          email,
+          phone,
+        },
+      });
+      setDisplayMessage(true);
+      setMessage('Client added.');
+    } catch (e) {
+      if (e instanceof Error) {
+        throw new Error('Something went wrong.');
+      }
+    }
 
     setName('');
     setEmail('');
     setPhone('');
+    setTimeout(() => {
+      setDisplayMessage(false);
+      setMessage('');
+    }, 2000);
+  };
+
+  const Message = () => {
+    return <p style={{ paddingTop: '2em', color: 'red' }}>{message}</p>;
   };
 
   return (
@@ -143,6 +159,7 @@ const AddClientModal = (): JSX.Element => {
                   />
                   <Button type='submit' colour='btn--primary' text='Submit' />
                 </div>
+                {displayMessage && <Message />}
               </form>
             </div>
           </div>
