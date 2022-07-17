@@ -11,6 +11,8 @@ interface IButtonProps {
 }
 
 const STYLES: Array<string> = [
+  'btn--cancel',
+  'btn--icon',
   'btn--primary',
   'btn--warning',
   'btn--danger',
