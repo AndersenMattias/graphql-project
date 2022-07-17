@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import Project from './pages/Project';
 import Header from './components/Header';
+import Client from './pages/Client';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/project/:name' element={<Project />} />
+        <Route path='/client/:name' element={<Client />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>

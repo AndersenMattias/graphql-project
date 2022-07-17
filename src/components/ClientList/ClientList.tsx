@@ -1,7 +1,9 @@
 import { useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
 import { GET_CLIENTS } from '../../queries/client';
 
 import '../../styles/components/_clientList.scss';
+import Button from '../ui/Button';
 
 const ClientList = () => {
   const { loading, error, data } = useQuery(GET_CLIENTS);
@@ -11,7 +13,7 @@ const ClientList = () => {
 
   return (
     <>
-      <h5 className='clientList-header'>Client Information</h5>
+      <h3 className='clientList-header'>Clients</h3>
       <div className='clientList-wrapper'>
         <table className='table'>
           <thead>
@@ -30,7 +32,9 @@ const ClientList = () => {
                   <td>{client.email}</td>
                   <td>{client.phone}</td>
                   <td>
-                    <button>View</button>
+                    <Link to={`/client/${client.name}`}>
+                      <Button colour='btn--primary' text='View' />
+                    </Link>
                   </td>
                 </tr>
               );
