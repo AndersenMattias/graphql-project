@@ -10,3 +10,20 @@ export const GET_CLIENTS = gql`
     }
   }
 `;
+
+export const GET_CLIENT = gql`
+  query getClient($name: String!) {
+    clients(where: { name: { _eq: $name } }) {
+      id
+      name
+      email
+      phone
+      projects {
+        id
+        name
+        description
+        status
+      }
+    }
+  }
+`;
