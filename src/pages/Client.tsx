@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import ClientDetails from '../components/ClientDetails/ClientDetails';
 import { GET_CLIENT } from '../queries/client';
 import ClientInformation from '../components/ClientInformation';
+import { IClient } from '../interfaces/interface';
 
 const Client = () => {
   const { name } = useParams();
@@ -13,7 +14,7 @@ const Client = () => {
   if (error) return <p>Something went wrong.</p>;
   return (
     <div>
-      {data.clients.map((client: any) => {
+      {data.clients.map((client: IClient) => {
         return <ClientInformation client={client} />;
       })}
     </div>

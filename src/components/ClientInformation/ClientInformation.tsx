@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import { FaIdBadge, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaIdBadge, FaEnvelope, FaPhone, FaTrash } from 'react-icons/fa';
+import { BsPencil } from 'react-icons/bs';
 
 import { useMutation } from '@apollo/client';
 import { UPDATE_CLIENT } from '../../mutations/client';
 import { GET_CLIENT } from '../../queries/client';
 
-const ClientInformation = ({ client }: any) => {
+import { ClientProps } from '../../interfaces/interface';
+
+const ClientInformation = ({ client }: ClientProps) => {
+  console.log(client);
   const [name, setName] = useState(client.name);
   const [email, setEmail] = useState(client.email);
   const [phone, setPhone] = useState(client.phone);
+
   const [toggleEdit, setToggleEdit] = useState<boolean>(false);
 
   const [update_clients] = useMutation(UPDATE_CLIENT, {
@@ -46,7 +51,18 @@ const ClientInformation = ({ client }: any) => {
           </li>
         </ul>
       )}
-      <button onClick={() => setToggleEdit(!toggleEdit)}>Edit</button>
+
+      {!toggleEdit && (
+        <button onClick={() => setToggleEdit(!toggleEdit)}>
+          <BsPencil />
+        </button>
+      )}
+
+      {!toggleEdit && (
+        <button onClick={() => setToggleEdit(!toggleEdit)}>
+          <FaTrash />
+        </button>
+      )}
 
       {toggleEdit && (
         <div key={client.id}>

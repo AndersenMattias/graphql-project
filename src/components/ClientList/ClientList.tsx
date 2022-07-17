@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { GET_CLIENTS } from '../../queries/client';
+import { IClient } from '../../interfaces/interface';
 
 import '../../styles/components/_clientList.scss';
 import Button from '../ui/Button';
@@ -25,7 +26,7 @@ const ClientList = () => {
             </tr>
           </thead>
           <tbody>
-            {data.clients.map((client: any) => {
+            {data.clients.map((client: IClient) => {
               return (
                 <tr key={client.id}>
                   <td>{client.name}</td>

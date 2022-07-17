@@ -3,6 +3,23 @@ export interface IProject {
   name: string;
   description: string;
   status: string;
+  client: {
+    id: number;
+    name: string;
+    email: string;
+    phone: string;
+  };
+}
+
+export interface IClient {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+}
+
+export interface ClientProps {
+  client: IClient;
 }
 
 export interface IProps {
