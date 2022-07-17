@@ -1,18 +1,30 @@
 import React, { useState } from 'react';
 import { FaIdBadge, FaEnvelope, FaPhone } from 'react-icons/fa';
 
+import { useMutation } from '@apollo/client';
+import { UPDATE_CLIENT } from '../../mutations/client';
+import { GET_CLIENT } from '../../queries/client';
+
 const ClientInformation = ({ client }: any) => {
   const [name, setName] = useState(client.name);
   const [email, setEmail] = useState(client.email);
   const [phone, setPhone] = useState(client.phone);
   const [toggleEdit, setToggleEdit] = useState<boolean>(false);
 
+  const [update_clients] = useMutation(UPDATE_CLIENT, {
+    refetchQueries: [{ query: GET_CLIENT, variables: { id: client.id } }],
+  });
+
   const onEditClient = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // addClient(name, email, phone);
+    update_clients({
+      variables: { id: client.id, name, email, phone },
+    });
 
-    console.log('name: ', name, 'email: ', email, 'phone: ', phone);
+    setTimeout(() => {
+      setToggleEdit(false);
+    }, 1000);
   };
 
   return (
