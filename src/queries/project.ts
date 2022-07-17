@@ -7,6 +7,30 @@ export const GET_PROJECTS = gql`
       name
       description
       status
+      clientId
+      client {
+        email
+        name
+        phone
+        id
+      }
+    }
+  }
+`;
+
+export const GET_PROJECT = gql`
+  query getProject($name: String!) {
+    projects(where: { name: { _eq: $name } }) {
+      id
+      name
+      description
+      status
+      client {
+        email
+        name
+        phone
+        id
+      }
     }
   }
 `;

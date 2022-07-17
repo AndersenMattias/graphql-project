@@ -1,9 +1,38 @@
-import React from 'react';
+import { useQuery } from '@apollo/client';
+import { useParams, Link } from 'react-router-dom';
+import ClientDetails from '../components/ClientDetails/ClientDetails';
+import Button from '../components/ui/Button';
+import { GET_PROJECT } from '../queries/project';
 
-const Project = () => {
+const Project = (): JSX.Element => {
+  const { name } = useParams();
+
+  const { loading, error, data } = useQuery(GET_PROJECT, {
+    variables: { name },
+  });
+
+  if (loading) return <p>Loading..</p>;
+  if (error) return <p>Something went wrong.</p>;
+
   return (
     <div>
-      <h3>Project here</h3>
+      {!loading &&
+        !error &&
+        data.projects.map((project: any) => {
+          return (
+            <div>
+              <Link to='/'>
+                <Button colour='btn--primary' text='Back' />
+              </Link>
+              <h2>{project.name}</h2>
+              <p>{project.description}</p>
+
+              <h5>Project Status</h5>
+              <p>{project.status}</p>
+              <ClientDetails client={project.client} />
+            </div>
+          );
+        })}
     </div>
   );
 };
