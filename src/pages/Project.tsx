@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { useParams, Link } from 'react-router-dom';
-import ClientDetails from '../components/ClientDetails/ClientDetails';
+import ClientDetails from '../components/ClientDetails';
 import Button from '../components/ui/Button';
 import { GET_PROJECT } from '../queries/project';
 
@@ -20,7 +20,7 @@ const Project = (): JSX.Element => {
         !error &&
         data.projects.map((project: any) => {
           return (
-            <div>
+            <div key={project.id}>
               <Link to='/'>
                 <Button colour='btn--primary' text='Back' />
               </Link>
@@ -29,7 +29,7 @@ const Project = (): JSX.Element => {
 
               <h5>Project Status</h5>
               <p>{project.status}</p>
-              <ClientDetails client={project.client} />
+              <ClientDetails key={project.client.id} client={project.client} />
             </div>
           );
         })}
