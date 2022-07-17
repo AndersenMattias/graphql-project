@@ -23,6 +23,7 @@ export const GET_CLIENT = gql`
         name
         description
         status
+        clientId
       }
     }
   }

@@ -33,12 +33,18 @@ export const UPDATE_CLIENT = gql`
 `;
 
 export const DELETE_CLIENT = gql`
-  mutation ($id: ID!) {
-    deleteClient(id: $id) {
-      id
-      name
-      email
-      phone
+  mutation deleteClient($clientId: Int!, $id: Int!) {
+    delete_projects(where: { clientId: { _eq: $clientId } }) {
+      returning {
+        id
+        name
+      }
+    }
+    delete_clients(where: { id: { _eq: $id } }) {
+      returning {
+        name
+        email
+      }
     }
   }
 `;

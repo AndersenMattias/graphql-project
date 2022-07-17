@@ -20,14 +20,27 @@ export const ADD_PROJECT = gql`
       description
       status
       clientId
+      client {
+        id
+        name
+        email
+        phone
+      }
     }
   }
 `;
 
 export const DELETE_PROJECT = gql`
-  mutation deleteProject($id: Int!) {
-    delete_projects(where: { id: { _eq: $id } }) {
-      affected_rows
+  mutation deleteProject($id: Int!, $clientId: Int) {
+    delete_projects(where: { id: { _eq: $id }, clientId: { _eq: $clientId } }) {
+      returning {
+        id
+        name
+        client {
+          id
+          email
+        }
+      }
     }
   }
 `;

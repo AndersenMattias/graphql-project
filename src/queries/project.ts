@@ -25,6 +25,7 @@ export const GET_PROJECT = gql`
       name
       description
       status
+      clientId
       client {
         email
         name
