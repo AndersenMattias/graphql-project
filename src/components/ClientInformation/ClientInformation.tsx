@@ -29,11 +29,15 @@ const ClientInformation = ({ client, projects }: ClientProps) => {
   });
 
   // Delete client then refetch Data
-  const [delete_clients] = useMutation(DELETE_CLIENT, {
-    variables: { clientId: clientId[0], id: client.id },
-    onCompleted: () => navigate('/'),
-    refetchQueries: [{ query: GET_CLIENTS }, { query: GET_PROJECTS }],
-  });
+  const [delete_clients, { data, loading, error }] = useMutation(
+    DELETE_CLIENT,
+    {
+      variables: { clientId: clientId[0], id: client.id },
+
+      onCompleted: () => navigate('/'),
+      refetchQueries: [{ query: GET_CLIENTS }, { query: GET_PROJECTS }],
+    }
+  );
 
   const onEditClient = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,6 +50,9 @@ const ClientInformation = ({ client, projects }: ClientProps) => {
       setToggleEdit(false);
     }, 1000);
   };
+
+  if (loading) return <p>Loading..</p>;
+  if (error) return <p>Something went wrong.</p>;
 
   return (
     <>
