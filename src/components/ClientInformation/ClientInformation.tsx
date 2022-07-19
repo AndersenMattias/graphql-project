@@ -13,7 +13,7 @@ import { GET_PROJECTS } from '../../queries/project';
 import '../../styles/components/_clientInformation.scss';
 import Button from '../ui/Button';
 
-const ClientInformation = ({ client, projects }: ClientProps) => {
+const ClientInformation = ({ client, projects }: ClientProps): JSX.Element => {
   const navigate = useNavigate();
 
   const clientId = projects.map((x: IProjectsProps) => x.clientId)!;

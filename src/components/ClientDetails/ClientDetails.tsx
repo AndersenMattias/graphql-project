@@ -1,7 +1,7 @@
 import { FaEnvelope, FaPhone, FaIdBadge } from 'react-icons/fa';
 import { ClientProps } from '../../interfaces/interface';
 
-const ClientDetails = ({ client }: ClientProps) => {
+const ClientDetails = ({ client }: ClientProps): JSX.Element => {
   return (
     <>
       <h5>Client Information</h5>

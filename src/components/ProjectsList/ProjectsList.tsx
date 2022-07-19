@@ -5,7 +5,7 @@ import ProjectCard from '../ProjectCard';
 import '../../styles/components/_projectList.scss';
 import { IProject } from '../../interfaces/interface';
 
-const ProjectsList = () => {
+const ProjectsList = (): JSX.Element => {
   const { loading, error, data } = useQuery(GET_PROJECTS);
 
   if (loading) return <p>Loading..</p>;
@@ -19,6 +19,9 @@ const ProjectsList = () => {
           return <ProjectCard key={project.id} project={project} />;
         })}
       </section>
+      {data.projects.length <= 0 && (
+        <p className='noData-txt'>No projects to be found.</p>
+      )}
     </>
   );
 };

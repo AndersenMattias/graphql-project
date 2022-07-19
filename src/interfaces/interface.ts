@@ -16,12 +16,35 @@ export interface IClient {
   name: string;
   email: string;
   phone: string;
+  projects?: {
+    id: number;
+    name: string;
+    description: string;
+    status: string;
+    clientId: number;
+  }[];
 }
 
 export interface ClientProps {
   client: IClient;
+  projects?: any;
+}
+
+export interface IProjects {
+  id: number;
+  name: string;
+  description: string;
+  status: string;
 }
 
 export interface IProps {
   project: IProject;
+}
+
+export interface IProjectsProps {
+  id: number;
+  name: string;
+  description: string;
+  status: string;
+  clientId: number;
 }

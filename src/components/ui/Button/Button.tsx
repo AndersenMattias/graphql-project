@@ -32,7 +32,7 @@ const Button = ({
   colour,
   children,
   id,
-}: IButtonProps) => {
+}: IButtonProps): JSX.Element => {
   const checkButtonStyle = STYLES.includes(colour) ? colour : STYLES[0];
 
   return (

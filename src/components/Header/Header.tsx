@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import '../../styles/components/_header.scss';
 
-const Header = () => {
+const Header = (): JSX.Element => {
   return (
     <nav>
       <div className='nav-container'>

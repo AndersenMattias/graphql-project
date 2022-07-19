@@ -74,7 +74,6 @@ const AddProjectModal = (): JSX.Element => {
       return;
     }
 
-    console.log(name, description, status, clientId);
     insert_projects_one({
       variables: {
         name,
@@ -95,16 +94,18 @@ const AddProjectModal = (): JSX.Element => {
 
   return (
     <>
-      <div className='btn-action'>
-        <div>
-          <Button
-            type='button'
-            colour='btn--primary'
-            onClick={() => setModalIsOpen(!isModalOpen)}
-            text='New Project'
-          />
+      {data.clients.length > 0 && (
+        <div className='btn-action'>
+          <div>
+            <Button
+              type='button'
+              colour='btn--primary'
+              onClick={() => setModalIsOpen(!isModalOpen)}
+              text='New Project'
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {isModalOpen && (
         <div className='modalWrapper-project'>

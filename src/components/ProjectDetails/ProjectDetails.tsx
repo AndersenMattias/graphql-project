@@ -6,8 +6,9 @@ import Button from '../ui/Button';
 import { GET_PROJECTS } from '../../queries/project';
 import { GET_CLIENTS } from '../../queries/client';
 import { DELETE_PROJECT } from '../../mutations/project';
+import { IProps } from '../../interfaces/interface';
 
-const ProjectDetails = ({ project, clients, data }: any) => {
+const ProjectDetails = ({ project }: IProps): JSX.Element => {
   const navigate = useNavigate();
 
   // Delete client then refetch Data
