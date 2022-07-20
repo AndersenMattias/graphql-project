@@ -30,16 +30,33 @@ export const ADD_PROJECT = gql`
   }
 `;
 
-export const DELETE_PROJECT = gql`
-  mutation deleteProject($id: Int!, $clientId: Int) {
-    delete_projects(where: { id: { _eq: $id }, clientId: { _eq: $clientId } }) {
+export const UPDATE_PROJECT = gql`
+  mutation updateProject(
+    $id: Int!
+    $name: String!
+    $description: String!
+    $status: projects_status_enum!
+  ) {
+    update_projects(
+      where: { id: { _eq: $id } }
+      _set: { name: $name, description: $description, status: $status }
+    ) {
       returning {
         id
         name
-        client {
-          id
-          email
-        }
+        description
+        status
+      }
+    }
+  }
+`;
+
+export const DELETE_PROJECT = gql`
+  mutation deleteProject($id: Int!) {
+    delete_projects(where: { id: { _eq: $id } }) {
+      returning {
+        id
+        name
       }
     }
   }
