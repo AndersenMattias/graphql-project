@@ -7,15 +7,18 @@ const ClientDetails = ({ client }: ClientProps): JSX.Element => {
       <h5>Client Information</h5>
       <ul>
         <li>
-          <FaIdBadge />
+          <FaIdBadge style={{ color: 'orange' }} className='icon' />
+
           {client.name}
         </li>
         <li>
-          <FaEnvelope />
+          <FaEnvelope style={{ color: 'lightblue' }} className='icon' />
+
           {client.email}
         </li>
         <li>
-          <FaPhone />
+          <FaPhone style={{ color: 'green' }} className='icon' />
+
           {client.phone}
         </li>
       </ul>

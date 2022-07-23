@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import ClientDetails from '../components/ClientDetails/ClientDetails';
 import { GET_CLIENT } from '../queries/client';
 import ClientInformation from '../components/ClientInformation';
 import { IClient } from '../interfaces/interface';
@@ -13,9 +12,15 @@ const Client = () => {
   if (loading) return <p>Loading..</p>;
   if (error) return <p>Something went wrong.</p>;
   return (
-    <div>
+    <div style={{ width: '60%', margin: '0 auto', paddingTop: '5em' }}>
       {data.clients.map((client: IClient) => {
-        return <ClientInformation client={client} />;
+        return (
+          <ClientInformation
+            key={client.id}
+            client={client}
+            projects={client.projects}
+          />
+        );
       })}
     </div>
   );

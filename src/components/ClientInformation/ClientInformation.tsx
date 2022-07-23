@@ -12,6 +12,7 @@ import { GET_PROJECTS } from '../../queries/project';
 
 import '../../styles/components/_clientInformation.scss';
 import Button from '../ui/Button';
+import DeleteModal from '../DeleteModal';
 
 const ClientInformation = ({ client, projects }: ClientProps): JSX.Element => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const ClientInformation = ({ client, projects }: ClientProps): JSX.Element => {
   const [phone, setPhone] = useState(client.phone);
 
   const [toggleEdit, setToggleEdit] = useState<boolean>(false);
+  const [toggleModal, setToggleModal] = useState<boolean>(false);
 
   const [update_clients] = useMutation(UPDATE_CLIENT, {
     refetchQueries: [{ query: GET_CLIENT, variables: { id: client.id } }],
@@ -45,10 +47,6 @@ const ClientInformation = ({ client, projects }: ClientProps): JSX.Element => {
     update_clients({
       variables: { id: client.id, name, email, phone },
     });
-
-    setTimeout(() => {
-      setToggleEdit(false);
-    }, 1000);
   };
 
   if (loading) return <p>Loading..</p>;
@@ -95,7 +93,7 @@ const ClientInformation = ({ client, projects }: ClientProps): JSX.Element => {
               <Button
                 id='delete-clientIcon'
                 colour='btn--icon'
-                onClick={() => delete_clients()}
+                onClick={() => setToggleModal(!toggleModal)}
               >
                 <FaTrash />
               </Button>
@@ -143,6 +141,11 @@ const ClientInformation = ({ client, projects }: ClientProps): JSX.Element => {
             </div>
           )}
         </div>
+        <DeleteModal
+          toggleModal={toggleModal}
+          setToggleModal={setToggleModal}
+          name={client.name}
+        />
       </div>
     </>
   );

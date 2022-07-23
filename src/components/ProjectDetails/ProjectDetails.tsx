@@ -41,10 +41,6 @@ const ProjectDetails = ({ project }: IProps): JSX.Element => {
     update_projects({
       variables: { id: project.id, name, description, status },
     });
-
-    setTimeout(() => {
-      setToggleEdit(false);
-    }, 1000);
   };
 
   return (
@@ -63,7 +59,7 @@ const ProjectDetails = ({ project }: IProps): JSX.Element => {
             <li>
               <p>{project.description}</p>
             </li>
-            <li>{project.status}</li>
+            <li>{project.status.replace('_', ' ')}</li>
           </ul>
           <div>
             {!toggleEdit && (
